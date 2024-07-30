@@ -5,11 +5,17 @@ const { default: mongoose } = require("mongoose");
 // Create Express server instance to start configuration
 const app = express();
 
+// Tell server how to use data
+app.use(express.json());
+
 app.get("/", (request, response, next) => {
   response.json({
     message: "Hello world!",
   });
 });
+
+const AccountRouter = require("./routers/AccountRouter.js");
+app.use("/accounts", AccountRouter);
 
 // Get database details
 app.get("/databaseHealth", (request, response) => {
@@ -22,9 +28,13 @@ app.get("/databaseHealth", (request, response) => {
     readyState: databaseState,
     dbName: databaseName,
     dbModels: databaseModels,
-    dbhost: databaseHost
-    })
-})
+    dbhost: databaseHost,
+  });
+});
+
+app.get("*", (request, response, next) => {
+  response.json({ message: "404 route activated!" });
+});
 
 // Error handling for the server
 app.use((error, request, response, next) => {
