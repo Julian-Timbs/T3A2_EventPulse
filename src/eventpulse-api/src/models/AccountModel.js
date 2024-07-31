@@ -1,14 +1,26 @@
 const { default: mongoose } = require("mongoose");
 
-const Account = mongoose.model("Account", {
-  email: String,
-  password: String,
-  location: String,
-  preferences: {
-    category: String,
+const accountSchema = mongoose.Schema({
+  email: {
+    type: String,
+    required: true
+    },
+  password: {
+    type: String,
+    required: true
   },
-});
+  location: {
+    type: String,
+    required: true
+  },
+  preferences: {
+    type: [String], // potentially could be enums
+    required: true
+  },
+})
+
+const AccountModel = mongoose.model("Account", accountSchema);
 
 module.exports = {
-  Account,
+  AccountModel,
 };
