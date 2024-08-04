@@ -27,9 +27,17 @@ router.post("/", async (request, response) => {
   });
 });
 
+router.patch("/:id", async (request, response) => {
+  let result = await AccountModel.findByIdAndUpdate(
+    request.params.id,
+    request.body,
+    { returnDocument: "after" },
+  );
 
-router.patch("/:id", (request, response) => {
-
+  response.json({
+    message: "Account updated",
+    result: result,
+  });
 });
 
 router.delete("/:id", async (request, response) => {

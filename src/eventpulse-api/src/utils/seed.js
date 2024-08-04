@@ -1,5 +1,6 @@
 const { AccountModel } = require("../models/AccountModel");
 const { EventModel } = require("../models/EventModel");
+const { comparePasswords, createJwt, validateJwt } = require("./authHelpers");
 const { connectDatabase, databaseDrop, databaseClose } = require("./database");
 
 async function seedAccounts() {
@@ -24,9 +25,24 @@ async function seedAccounts() {
     },
   ];
 
+  anotherAccount = {
+    email: "account4@email.com",
+    password: "password",
+    location: "here",
+    preferences: ["community events", "sports", "music"],
+  }
+  
   let result = await AccountModel.insertMany(accountData);
 
-  console.log(result);
+  let accountFour = await AccountModel.create(anotherAccount);
+
+  await accountFour.save();
+
+  console.log("accountFour's encrypted password is: " + accountFour.password);
+  let doesAccountPassMatch = await comparePasswords("password", accountFour.password);
+  console.log("accountFour's password is 'password': " + doesAccountPassMatch);
+
+  console.log([ ...result, accountFour ]);
   return result;
 }
 
@@ -69,6 +85,11 @@ async function seed() {
 
   let newAccounts = await seedAccounts();
   let newEvents = await seedEvents(newAccounts);
+
+  let newJwt = createJwt(newAccounts[0]._id);
+  console.log("New JWT: " + newJwt);
+
+  validateJwt(newJwt);
 
   console.log("Data has been seeded");
   await databaseClose();

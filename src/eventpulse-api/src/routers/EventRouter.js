@@ -13,7 +13,9 @@ router.get("/", async (request, response) => {
 });
 
 router.get("/:id", async (request, response) => {
-  let result = await EventModel.findById(request.params.id).exec();
+  let result = await EventModel.findById(request.params.id)
+    .populate("host")
+    .exec();
 
   response.json({
     message: "Found event",
@@ -22,7 +24,7 @@ router.get("/:id", async (request, response) => {
 });
 
 router.post("/", async (request, response) => {
-  let result = await EventModel.create(request.body);
+  let result = await EventModel.create(request.body).populate("host");
 
   response.json({
     message: "Created event",
@@ -30,13 +32,23 @@ router.post("/", async (request, response) => {
   });
 });
 
+router.patch("/:id", async (request, response) => {
+  let result = await EventModel.findByIdAndUpdate(
+    request.params.id,
+    request.body,
+    { returnDocument: "after" },
+  );
 
-router.patch("/:id", (request, response) => {
-
+  response.json({
+    message: "Event updated",
+    result: result,
+  });
 });
 
 router.delete("/:id", async (request, response) => {
-  let result = await EventModel.findByIdAndDelete(request.params.id);
+  let result = await EventModel.findByIdAndDelete(request.params.id).populate(
+    "host",
+  );
 
   response.json({
     message: "Deleted event",
