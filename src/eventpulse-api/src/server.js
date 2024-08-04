@@ -17,6 +17,9 @@ app.get("/", (request, response, next) => {
 const AccountRouter = require("./routers/AccountRouter.js");
 app.use("/accounts", AccountRouter);
 
+const EventRouter = require("./routers/EventRouter.js");
+app.use("/events", EventRouter);
+
 // Get database details
 app.get("/databaseHealth", (request, response) => {
   let databaseState = mongoose.connection.readyState;

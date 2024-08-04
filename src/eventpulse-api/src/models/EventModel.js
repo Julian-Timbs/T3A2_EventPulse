@@ -20,7 +20,7 @@ const eventSchema = mongoose.Schema({
     required: true,
   },
   dateTime: {
-    type: Date,
+    type: String,
     required: true,
   },
   description: {
@@ -29,7 +29,7 @@ const eventSchema = mongoose.Schema({
   },
   attendees: {
     type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Account" }],
-    required: true,
+    required: false,
   },
   image: {
     type: String,

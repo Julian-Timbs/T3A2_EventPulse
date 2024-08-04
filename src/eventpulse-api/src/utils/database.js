@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
 
-async function connect() {
+async function connectDatabase() {
   let databaseURL =
     process.env.DATABASE_URL || "mongodb://localhost:27017/eventpulsedb";
 
@@ -8,6 +8,16 @@ async function connect() {
   console.log("Database connecting completed");
 }
 
+async function databaseClose() {
+  await mongoose.connection.close();
+  console.log("Database closed");
+}
+
+async function databaseDrop(){
+  await mongoose.connection.db.dropDatabase();
+}
 module.exports = {
-  connect,
+  connectDatabase,
+  databaseClose,
+  databaseDrop
 };
