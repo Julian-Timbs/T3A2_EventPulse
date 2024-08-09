@@ -8,19 +8,19 @@ async function seedAccounts() {
     {
       email: "account1@email.com",
       password: "password",
-      location: "here",
+      location: ["suburb", "city", "state"],
       preferences: ["food", "music"],
     },
     {
       email: "account2@email.com",
       password: "password",
-      location: "here",
+      location: ["suburb", "city", "state"],
       preferences: ["community events", "sports", "arts & culture"],
     },
     {
       email: "account3@email.com",
       password: "password",
-      location: "here",
+      location: ["suburb", "city", "state"],
       preferences: ["family", "education"],
     },
   ];
@@ -30,8 +30,8 @@ async function seedAccounts() {
     password: "password",
     location: "here",
     preferences: ["community events", "sports", "music"],
-  }
-  
+  };
+
   let result = await AccountModel.insertMany(accountData);
 
   let accountFour = await AccountModel.create(anotherAccount);
@@ -39,10 +39,13 @@ async function seedAccounts() {
   await accountFour.save();
 
   console.log("accountFour's encrypted password is: " + accountFour.password);
-  let doesAccountPassMatch = await comparePasswords("password", accountFour.password);
+  let doesAccountPassMatch = await comparePasswords(
+    "password",
+    accountFour.password,
+  );
   console.log("accountFour's password is 'password': " + doesAccountPassMatch);
 
-  console.log([ ...result, accountFour ]);
+  console.log([...result, accountFour]);
   return result;
 }
 

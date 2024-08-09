@@ -13,7 +13,7 @@ const accountSchema = mongoose.Schema({
     unique: false,
   },
   location: {
-    type: String,
+    type: [String],
     required: true,
     unique: false,
   },
@@ -34,11 +34,11 @@ accountSchema.pre("save", async function(next) {
 
   console.log("Pre-save hook run and password is modified");
 
-  console.log("Raw password is: " + this.password)
+  console.log("Raw password is: " + this.password);
 
   const hash = await bcrypt.hash(this.password, 10);
 
-  console.log("Hashed and encrypted and salted password is: " + hash)
+  console.log("Hashed and encrypted and salted password is: " + hash);
 
   this.password = hash;
 
