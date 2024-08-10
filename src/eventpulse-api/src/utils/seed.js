@@ -8,7 +8,7 @@ async function seedAccounts() {
     {
       name: "account1",
       email: "account1@email.com",
-      password: "password",
+      password: "1",
       location: ["suburb", "city", "state"],
       preferences: ["food", "music"],
     },
