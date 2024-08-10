@@ -25,6 +25,5 @@
 - food & drink
 - education
 - health & wellness
-- family
 - business & networking
 - misc
