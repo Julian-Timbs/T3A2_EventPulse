@@ -6,18 +6,22 @@ const { connectDatabase, databaseDrop, databaseClose } = require("./database");
 async function seedAccounts() {
   let accountData = [
     {
+      name: "account1",
       email: "account1@email.com",
       password: "password",
       location: ["suburb", "city", "state"],
       preferences: ["food", "music"],
     },
     {
+
+      name: "account2",
       email: "account2@email.com",
       password: "password",
       location: ["suburb", "city", "state"],
       preferences: ["community events", "sports", "arts & culture"],
     },
     {
+      name: "account3",
       email: "account3@email.com",
       password: "password",
       location: ["suburb", "city", "state"],
@@ -26,6 +30,7 @@ async function seedAccounts() {
   ];
 
   anotherAccount = {
+    name: "account4",
     email: "account4@email.com",
     password: "password",
     location: ["suburb", "city", "state"],

@@ -1,9 +1,12 @@
 // Importing Express to use it
 const express = require("express");
 const { default: mongoose } = require("mongoose");
+const cors = require("cors");
 
 // Create Express server instance to start configuration
 const app = express();
+
+app.use(cors());
 
 // Tell server how to use data
 app.use(express.json());
