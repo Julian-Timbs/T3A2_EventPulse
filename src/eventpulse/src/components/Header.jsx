@@ -8,7 +8,7 @@ export default function Header(){
         <NavLink to={"/"} >EventPulse</NavLink>
       </div>
       <nav id="navBar">
-        <NavLink to={"/login"} >Login</NavLink>
+        <NavLink to={"/auth"} >Login</NavLink>
         <TextField id="standard-basic" label="Find an Event" variant="standard" />
       </nav>
     </header>

@@ -30,7 +30,7 @@ export default function UserProvider({ children }) {
       method: "POST",
       body: JSON.stringify(bodyData),
       headers: {
-        "content-Type": "application/json",
+        "Content-Type": "application/json",
       },
     }).catch((error) => console.error(error));
 
@@ -43,15 +43,22 @@ export default function UserProvider({ children }) {
   };
 
   const makeLoginRequest = async (email, password) => {
+    let bodyData = { email, password };
+    console.log(bodyData)
     let loginResult = await fetch("http://localhost:3000/accounts/auth", {
       method: "POST",
-      body: { email, password },
+      body:  JSON.stringify({email, password}),
+      headers: {
+        "Content-Type": "application/json",
+      }
     });
+    
+  loginResult = await loginResult.json();
 
     console.log("Login result is: " + JSON.stringify(loginResult));
 
     setUserJwt(loginResult.jwt);
-    setDecodedUserJwt(loginResult.decodedJwt);
+    setDecodedUserJwt(loginResult.decodedUserJwt);
   };
 
   return (
