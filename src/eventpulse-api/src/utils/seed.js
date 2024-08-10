@@ -28,7 +28,7 @@ async function seedAccounts() {
   anotherAccount = {
     email: "account4@email.com",
     password: "password",
-    location: "here",
+    location: ["suburb", "city", "state"],
     preferences: ["community events", "sports", "music"],
   };
 
@@ -54,7 +54,7 @@ async function seedEvents(accounts) {
     {
       eventName: "Event 1",
       dateTime: "16-08-2024T12:00:00Z",
-      location: "Brisbane",
+      location: ["suburb", "city", "state"],
       description: "Lorem Ipsum",
       host: accounts[0].id,
       image: "https://placehold.co/600x400",
@@ -62,7 +62,7 @@ async function seedEvents(accounts) {
     {
       eventName: "Event 2",
       dateTime: "31-08-2024T12:00:00Z",
-      location: "Sunshine Coast",
+      location: ["suburb", "city", "state"],
       description: "Lorem Ipsum",
       host: accounts[1].id,
       image: "https://placehold.co/600x400",
@@ -70,7 +70,7 @@ async function seedEvents(accounts) {
     {
       eventName: "Event 3",
       dateTime: "24-08-2024T12:00:00Z",
-      location: "Gold Coast",
+      location: ["suburb", "city", "state"],
       description: "Lorem Ipsum",
       host: accounts[0].id,
       image: "https://placehold.co/600x400",

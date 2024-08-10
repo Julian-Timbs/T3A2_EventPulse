@@ -16,7 +16,7 @@ const eventSchema = mongoose.Schema({
     required: true,
   },
   location: {
-    type: String,
+    type: [String],
     required: true,
   },
   dateTime: {
@@ -36,10 +36,11 @@ const eventSchema = mongoose.Schema({
     required: true,
   },
   host: {
-    type: mongoose.Schema.Types.ObjectId, ref: "Account",
-    required: true
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Account",
+    required: true,
   },
-  });
+});
 
 const EventModel = mongoose.model("Event", eventSchema);
 
