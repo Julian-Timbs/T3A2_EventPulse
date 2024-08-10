@@ -25,7 +25,7 @@ export default function UserProvider({ children }) {
   ) => {
     let bodyData = { name, email, password, location, preferences };
     console.log("Body data to send is: ");
-    console.log(bodyData);
+    console.log(JSON.stringify(bodyData));
     let signUpResult = await fetch("http://localhost:3000/accounts/", {
       method: "POST",
       body: JSON.stringify(bodyData),
