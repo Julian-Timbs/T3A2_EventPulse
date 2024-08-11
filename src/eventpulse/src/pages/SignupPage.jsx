@@ -27,11 +27,13 @@ export default function SignupPage() {
     "misc",
   ];
 
+
   const handleCategorySelect = (category) => {
     setSelectedCategories((prevCategories) => {
       // Check if the category is already in the selectedCategories array
       if (prevCategories.includes(category)) {
         // If it is, remove it from the array (deselect the category)
+
         return prevCategories.filter((cat) => cat !== category);
       } else {
         // If it isn't, add it to the array (select the category)
@@ -117,7 +119,7 @@ export default function SignupPage() {
         </div>
       )}
       {showSignupButton && (
-        <Button variant="contained" onClick={() => makeSignupRequest(formName, formEmail, formPassword, formLocation, categories)}>
+        <Button variant="contained" onClick={() => makeSignupRequest(formName, formEmail, formPassword, formLocation, selectedCategories)}>
           Sign up!
         </Button>
       )}
